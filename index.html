@@ -11,172 +11,140 @@
 </head>
 <body>
 
-  <!-- ============ NAVBAR ============ -->
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="navbar-inner">
-      <!-- 左側メニュー（非表示） -->
       <div class="navbar-left"></div>
-      <!-- 中央タイトル：装飾テキスト -->
       <a class="project-home" href="index.html">·:·°·:·°★·:·°★·:·°·:·</a>
     </div>
   </nav>
 
-  <!-- ============ PAGE LIST ============ -->
+  <!-- PAGE LIST -->
   <main class="page-list">
     <div class="container">
-      <ul class="grid" id="main-grid">
 
-        <!-- ===== ピン留めタブ ===== -->
-        <li class="page-list-item pin" data-page-title="Information">
-          <a href="information.html">
-            <div class="header pinned">
-              <span class="title">Information</span>
-            </div>
-          </a>
+      <!-- ピン留めタブ -->
+      <ul class="pin-row">
+        <li class="pin" data-page-title="Information">
+          <a href="information.html">Information</a>
         </li>
-
-        <li class="page-list-item pin">
-          <a href="#" class="filter-link" data-filter="notes">
-            <div class="header pinned">
-              <span class="title">notes</span>
-            </div>
-          </a>
+        <li class="pin">
+          <a href="#" class="filter-link" data-filter="notes">notes</a>
         </li>
-
-        <li class="page-list-item pin">
-          <a href="#" class="filter-link active" data-filter="2026">
-            <div class="header pinned">
-              <span class="title">2026</span>
-            </div>
-          </a>
+        <li class="pin">
+          <a href="#" class="filter-link active" data-filter="all">all</a>
         </li>
-
-        <li class="page-list-item pin">
-          <a href="#" class="filter-link" data-filter="2025">
-            <div class="header pinned">
-              <span class="title">2025</span>
-            </div>
-          </a>
+        <li class="pin">
+          <a href="#" class="filter-link" data-filter="2026">2026</a>
         </li>
-
-        <li class="page-list-item pin">
-          <a href="#" class="filter-link" data-filter="2024">
-            <div class="header pinned">
-              <span class="title">2024</span>
-            </div>
-          </a>
+        <li class="pin">
+          <a href="#" class="filter-link" data-filter="2025">2025</a>
         </li>
+        <li class="pin">
+          <a href="#" class="filter-link" data-filter="2024">2024</a>
+        </li>
+      </ul>
 
-        <!-- ===== ワークカード =====
-             MicroCMSから取得する場合、ここをJSで差し替える
-             data-year で年フィルター、data-tag でカテゴリ対応
-        -->
+      <!-- ワークグリッド -->
+      <!-- MicroCMSから取得する場合、ul#works-grid の中身をJSで差し替える -->
+      <ul class="works-grid" id="works-grid">
 
-        <li class="page-list-item" data-year="2026" data-tag="notes">
+        <li class="work-item" data-year="2026" data-tag="">
           <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a1/800/450" alt="Work" loading="lazy" />
+            <div class="work-thumb">
+              <img src="https://picsum.photos/seed/a1/600/600" alt="Work" loading="lazy" />
             </div>
-            <div class="header"><span class="title">作品タイトル 01</span></div>
+            <div class="work-info">
+              <span class="work-title">作品タイトル 01</span>
+            </div>
           </a>
         </li>
 
-        <li class="page-list-item" data-year="2026" data-tag="">
+        <li class="work-item" data-year="2026" data-tag="notes">
           <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a2/800/450" alt="Work" loading="lazy" />
+            <div class="work-thumb">
+              <img src="https://picsum.photos/seed/a2/600/600" alt="Work" loading="lazy" />
             </div>
-            <div class="header"><span class="title">作品タイトル 02</span></div>
+            <div class="work-info">
+              <span class="work-title">作品タイトル 02</span>
+            </div>
           </a>
         </li>
 
-        <li class="page-list-item" data-year="2025" data-tag="">
+        <li class="work-item" data-year="2025" data-tag="">
           <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a3/800/450" alt="Work" loading="lazy" />
+            <div class="work-thumb">
+              <img src="https://picsum.photos/seed/a3/600/600" alt="Work" loading="lazy" />
             </div>
-            <div class="header"><span class="title">作品タイトル 03</span></div>
+            <div class="work-info">
+              <span class="work-title">作品タイトル 03</span>
+            </div>
           </a>
         </li>
 
-        <li class="page-list-item" data-year="2025" data-tag="">
+        <li class="work-item" data-year="2025" data-tag="">
           <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a4/800/450" alt="Work" loading="lazy" />
+            <div class="work-thumb">
+              <img src="https://picsum.photos/seed/a4/600/600" alt="Work" loading="lazy" />
             </div>
-            <div class="header"><span class="title">作品タイトル 04</span></div>
+            <div class="work-info">
+              <span class="work-title">作品タイトル 04</span>
+            </div>
           </a>
         </li>
 
-        <li class="page-list-item" data-year="2025" data-tag="">
+        <li class="work-item" data-year="2026" data-tag="">
           <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a5/800/450" alt="Work" loading="lazy" />
+            <div class="work-thumb">
+              <img src="https://picsum.photos/seed/a5/600/600" alt="Work" loading="lazy" />
             </div>
-            <div class="header"><span class="title">作品タイトル 05</span></div>
+            <div class="work-info">
+              <span class="work-title">作品タイトル 05</span>
+            </div>
           </a>
         </li>
 
-        <li class="page-list-item" data-year="2024" data-tag="">
+        <li class="work-item" data-year="2024" data-tag="">
           <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a6/800/450" alt="Work" loading="lazy" />
+            <div class="work-thumb">
+              <img src="https://picsum.photos/seed/a6/600/600" alt="Work" loading="lazy" />
             </div>
-            <div class="header"><span class="title">作品タイトル 06</span></div>
+            <div class="work-info">
+              <span class="work-title">作品タイトル 06</span>
+            </div>
           </a>
         </li>
 
-        <li class="page-list-item" data-year="2026" data-tag="">
+        <li class="work-item" data-year="2024" data-tag="notes">
           <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a7/800/450" alt="Work" loading="lazy" />
+            <div class="work-thumb">
+              <img src="https://picsum.photos/seed/a7/600/600" alt="Work" loading="lazy" />
             </div>
-            <div class="header"><span class="title">作品タイトル 07</span></div>
+            <div class="work-info">
+              <span class="work-title">作品タイトル 07</span>
+            </div>
           </a>
         </li>
 
-        <li class="page-list-item" data-year="2024" data-tag="">
+        <li class="work-item" data-year="2025" data-tag="">
           <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a8/800/450" alt="Work" loading="lazy" />
+            <div class="work-thumb">
+              <img src="https://picsum.photos/seed/a8/600/600" alt="Work" loading="lazy" />
             </div>
-            <div class="header"><span class="title">作品タイトル 08</span></div>
+            <div class="work-info">
+              <span class="work-title">作品タイトル 08</span>
+            </div>
           </a>
         </li>
 
-        <li class="page-list-item" data-year="2024" data-tag="notes">
+        <li class="work-item" data-year="2024" data-tag="">
           <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a9/800/450" alt="Work" loading="lazy" />
+            <div class="work-thumb">
+              <img src="https://picsum.photos/seed/a9/600/600" alt="Work" loading="lazy" />
             </div>
-            <div class="header"><span class="title">作品タイトル 09</span></div>
-          </a>
-        </li>
-
-        <li class="page-list-item" data-year="2024" data-tag="">
-          <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a10/800/450" alt="Work" loading="lazy" />
+            <div class="work-info">
+              <span class="work-title">作品タイトル 09</span>
             </div>
-            <div class="header"><span class="title">作品タイトル 10</span></div>
-          </a>
-        </li>
-
-        <li class="page-list-item" data-year="2025" data-tag="">
-          <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a11/800/450" alt="Work" loading="lazy" />
-            </div>
-            <div class="header"><span class="title">作品タイトル 11</span></div>
-          </a>
-        </li>
-
-        <li class="page-list-item" data-year="2024" data-tag="">
-          <a href="#">
-            <div class="card-bg">
-              <img src="https://picsum.photos/seed/a12/800/450" alt="Work" loading="lazy" />
-            </div>
-            <div class="header"><span class="title">作品タイトル 12</span></div>
           </a>
         </li>
 
@@ -186,7 +154,7 @@
 
   <script>
     const filterLinks = document.querySelectorAll('.filter-link');
-    const cards = document.querySelectorAll('#main-grid .page-list-item:not(.pin)');
+    const items = document.querySelectorAll('#works-grid .work-item');
 
     filterLinks.forEach(link => {
       link.addEventListener('click', e => {
@@ -195,11 +163,14 @@
         link.classList.add('active');
 
         const filter = link.dataset.filter;
-        cards.forEach(card => {
-          const year = card.dataset.year || '';
-          const tag  = card.dataset.tag  || '';
-          const show = (year === filter || tag === filter);
-          card.classList.toggle('hidden', !show);
+        items.forEach(item => {
+          if (filter === 'all') {
+            item.classList.remove('hidden');
+          } else {
+            const year = item.dataset.year || '';
+            const tag  = item.dataset.tag  || '';
+            item.classList.toggle('hidden', year !== filter && tag !== filter);
+          }
         });
       });
     });
