@@ -1,6 +1,5 @@
 /* ============================================
    Portfolio CSS — nunnu
-   正方形3列・タイトル下表示・角丸なし
    ============================================ */
 
 /* --------------------------------------------
@@ -13,7 +12,6 @@
   --text:          #4c4f69;
   --subtext:       #6c6f85;
   --marker-color:  #ea76cb;
-  --card-title-bg: #ea76cb;
 }
 
 *, *::before, *::after {
@@ -54,10 +52,10 @@ img { display: block; }
 }
 
 .navbar-inner {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   max-width: 85%;
   margin: 0 auto;
   padding: 0 16px;
@@ -68,7 +66,6 @@ img { display: block; }
   pointer-events: none;
 }
 
-/* 中央タイトル：装飾テキスト */
 .project-home {
   color: var(--text);
   font-family: "Zen Kaku Gothic New", sans-serif;
@@ -99,47 +96,39 @@ img { display: block; }
 
 
 /* --------------------------------------------
-   4. ピン留めタブ行
+   4. ピン留めタブ行 — 横並び
    -------------------------------------------- */
 
 .pin-row {
-  display: flex;
+  display: flex;          /* ← 横並び */
+  flex-direction: row;    /* ← 明示的に横 */
   flex-wrap: wrap;
-  gap: 0;
-  margin-bottom: 20px;
   align-items: center;
+  gap: 0 36px;            /* 横間隔36px、縦は0 */
+  margin-bottom: 24px;
 }
 
 .pin-row .pin {
-  height: 32px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-}
-
-/* タブ間隔：Scrapboxと同様に均等配置 */
-.pin-row .pin + .pin {
-  margin-left: 40px;
+  height: 32px;
+  width: auto;            /* ← 幅を内容に合わせる */
+  flex-shrink: 0;
 }
 
 .pin-row .pin a {
-  display: block;
+  display: inline-block;
   font-size: 12px;
   font-weight: 700;
   color: var(--accentcolor);
-  line-height: 20px;
   letter-spacing: 0.03em;
+  line-height: 20px;
   padding: 6px 0;
   transition: opacity 0.2s;
+  white-space: nowrap;
 }
 
-.pin-row .pin a:hover {
-  opacity: 0.7;
-}
-
-/* Informationだけ特別色（同じアクセントだが太字） */
-.pin-row .pin[data-page-title="Information"] a {
-  color: var(--accentcolor);
-}
+.pin-row .pin a:hover { opacity: 0.7; }
 
 /* アクティブなフィルター */
 .filter-link.active {
@@ -150,24 +139,18 @@ img { display: block; }
 
 
 /* --------------------------------------------
-   5. ワークグリッド：正方形 3列
+   5. ワークグリッド：正方形 2列
    -------------------------------------------- */
 
 .works-grid {
   display: grid;
   gap: 12px;
-  /* モバイル: 1列 */
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);  /* 常に2列 */
 }
 
-/* タブレット: 2列 */
-@media screen and (min-width: 600px) {
-  .works-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* デスクトップ: 3列 */
-@media screen and (min-width: 960px) {
-  .works-grid { grid-template-columns: repeat(3, 1fr); }
+/* スマホ極小サイズのみ1列 */
+@media screen and (max-width: 400px) {
+  .works-grid { grid-template-columns: 1fr; }
 }
 
 /* 非表示（フィルター） */
@@ -193,11 +176,9 @@ img { display: block; }
 
 /* 正方形サムネイル・角丸なし */
 .work-thumb {
-  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  /* border-radius: 0; ← 角丸なし（明示的に0） */
   border-radius: 0;
   background-color: var(--subtext);
 }
@@ -209,17 +190,15 @@ img { display: block; }
   transition: opacity 0.25s ease;
 }
 
-/* ホバーで画像を少し暗く */
 .work-item > a:hover .work-thumb img {
   opacity: 0.85;
 }
 
-/* カード下のテキストエリア */
+/* タイトル：カード下に常時表示 */
 .work-info {
-  padding: 8px 2px 4px;
+  padding: 6px 2px 2px;
 }
 
-/* タイトル：小さめ、常時表示 */
 .work-title {
   display: block;
   font-size: 13px;
@@ -234,46 +213,54 @@ img { display: block; }
    7. ページ本文（information.html）
    -------------------------------------------- */
 
-.info-page .page {
+.info-page body,
+.info-page {
+  background-color: var(--basecolor);
+}
+
+.page {
   background-color: transparent;
 }
 
 .page-column {
-  display: grid;
-  grid-template-columns: 70vw;
-  justify-content: center;
-  padding: 60px 16px 100px;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+  display: flex;
+  flex-direction: column;
 }
 
 .line {
   font-size: 20px;
   color: var(--text);
-  width: 100%;
   line-height: 1.8;
   padding: 2px 0;
 }
 
 .line .text { color: var(--text); }
 
-/* ページタイトル */
+/* ページタイトル（一番大きい見出し） */
 .line.line-title {
   font-size: 36px;
-  box-shadow: 0 1px 0 0 var(--text);
-  padding-bottom: 20px;
-  display: block;
-  background-color: transparent;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 700;
+  color: var(--text);
   text-align: center;
   letter-spacing: 0.06em;
-  text-indent: 0.06em;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--text);
+  margin-bottom: 0;
 }
 
 /* セクション見出し */
 .section-heading {
-  font-size: 22px;
+  font-size: 22px !important;
+  font-weight: 700;
   letter-spacing: 0.05em;
+  color: var(--text);
 }
 
-/* マーカー強調（[[二重括弧]]） */
+/* マーカー強調 */
 .line strong {
   background: linear-gradient(
     transparent 10%,
@@ -284,7 +271,7 @@ img { display: block; }
   font-weight: 700;
 }
 
-/* 外部リンク */
+/* 外部・ページリンク */
 .ext-link {
   color: var(--accentcolor);
   font-size: 20px;
@@ -292,7 +279,6 @@ img { display: block; }
 .ext-link:hover {
   animation: blink 0.5s linear infinite;
 }
-
 .back-link { font-size: 15px; }
 
 @keyframes blink {
@@ -300,7 +286,7 @@ img { display: block; }
   50%       { opacity: 0.6; }
 }
 
-/* セパレーター（---） */
+/* セパレーター */
 .line.separator-line {
   display: flex;
   align-items: center;
@@ -338,10 +324,9 @@ img { display: block; }
 
 @media (max-width: 640px) {
   .page-column {
-    grid-template-columns: 90vw;
     padding: 40px 16px 80px;
   }
   .line.line-title { font-size: 26px; }
-  .line { font-size: 17px; }
-  .pin-row .pin + .pin { margin-left: 20px; }
+  .line            { font-size: 17px; }
+  .pin-row         { gap: 0 20px; }
 }
