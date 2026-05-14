@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nunnu - Portfolio & Notes</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@100..700&family=Noto+Music&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           Scrapbox カスタムCSS 移植版
+           ============================================ */
+
+        :root {
+            /* カラーパレット */
+            --basecolor: #eff1f5;
+            --accentcolor: #7287fd;
+            --text: #4c4f69;
+            --marker-color: #ea76cb;
+            --empty-tag-color: #ea76cb;
+            --card-title-bg: #ea76cb;
+            --overlay-bg: rgba(0, 0, 0, 0.6);
+        }
+
+        /* フォント設定 */
+        html, body, .grid li, .line, .navbar {
+            font-family: "Zen Kaku Gothic New", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            color: var(--text);
+        }
+
+        body {
+            background-color: var(--basecolor);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* スクロールバー非表示 */
+        html { scrollbar-width: none; }
+        html::-webkit-scrollbar { display: none; }
+        
+        a { text-decoration: none; }
+
+        /* --------------------------------------------
+           2. ナビゲーションバー
+           -------------------------------------------- */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+            background-color: var(--basecolor);
+        }
+
+        .project-home {
+            color: var(--text);
+            font-size: 24px;
+            letter-spacing: 0.1em;
+        }
+
+        /* --------------------------------------------
+           7. ページリスト (Grid Layout)
+           -------------------------------------------- */
+        .page-list {
+            padding-top: 5vh;
+        }
+
+        .container {
+            max-width: 85%;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        ul.grid {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: start;
+        }
+
+        /* Responsive Grid */
+        @media screen and (min-width: 768px) { ul.grid { grid-template-columns: repeat(4, 1fr); } }
+        @media screen and (min-width: 1200px) { ul.grid { grid-template-columns: repeat(6, 1fr); } }
+        @media screen and (min-width: 1600px) { ul.grid { grid-template-columns: repeat(8, 1fr); } }
+
+        
+        /* --------------------------------------------
+           8. ピン留めカード
+           -------------------------------------------- */
+        .grid li.pin {
+            grid-column: 1 / -1; /* 横幅いっぱい */
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .grid li.pin a {
+            font-size: 14px;
+            color: var(--accentcolor);
+            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid var(--accentcolor);
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        
+        .grid li.pin a:hover {
+            background-color: var(--accentcolor);
+            color: var(--basecolor);
+        }
+
+        /* --------------------------------------------
+           9. 通常カード
+           -------------------------------------------- */
+        .grid li.page-list-item:not(.pin) {
+            aspect-ratio: 1 / 1; /* 正方形 */
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #ddd; /* fallback */
+        }
+
+        .grid li.page-list-item:not(.pin) a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* タイトルのスタイル */
+        .grid li.page-list-item a .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .grid li.page-list-item a .header .title {
+            font-size: 13px;
+            background-color: var(--card-title-bg);
+            color: white;
+            padding: 4px 8px;
+            display: inline-block;
+            border-bottom-right-radius: 8px;
+            opacity: 0; /* デフォルトは非表示 */
+            transition: opacity 0.3s ease;
+        }
+
+        /* Hover時にタイトル表示 */
+        .grid li.page-list-item:hover a .header .title {
+            opacity: 1;
+        }
+
+        /* 画像スタイル */
+        .grid li.page-list-item a .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .grid li.page-list-item:hover a .icon img {
+            transform: scale(1.05); /* Hoverで少し拡大 */
+        }
+
+        /* 画像がない場合のスタイル */
+        .grid li.page-list-item.no-image {
+            background-color: var(--basecolor);
+            border: 1px solid #ccc;
+        }
+
+        .grid li.page-list-item.no-image a .header .title {
+            opacity: 1; /* 画像なしは常に表示 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            color: var(--text);
+            font-size: 18px;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        /* 新規作成ボタン */
+        .new-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--accentcolor);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.2s;
+        }
+
+        .new-button:hover {
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="project-home">nunnu_github.io</a>
+    </nav>
+
+    <!-- Page List Area -->
+    <div class="page-list">
+        <div class="container">
+            <ul class="grid">
+                
+                <!-- ピン留めエリア (タグや重要なページ) -->
+                <li class="pin">
+                    <a href="#">Information</a>
+                    <a href="#">About Me</a>
+                    <a href="#">#UI_Design</a>
+                    <a href="#">#Motion_Graphics</a>
+                </li>
+
+                <!-- 通常カード (画像あり) -->
+                <li class="page-list-item">
+                    <a href="#">
+                        <div class="header">
+                            <span class="title">Project Alpha</span>
+                        </div>
+                        <div class="icon">
+                            <img src="https://placehold.co/400x400/ea76cb/white?text=Project+Alpha" alt="Project Alpha">
+                        </div>
+                    </a>
+                </li>
+
+                <li class="page-list-item">
+                    <a href="#">
+                        <div class="header">
+                            <span class="title">Motion Reel 2026</span>
+                        </div>
+                        <div class="icon">
+                            <img src="https://placehold.co/400x400/7287fd/white?text=Motion+Reel" alt="Motion Reel">
+                        </div>
+                    </a>
+                </li>
+
+                <li class="page-list-item">
+                    <a href="#">
+                        <div class="header">
+                            <span class="title">Visual Experiment 01</span>
+                        </div>
+                        <div class="icon">
+                            <img src="https://placehold.co/400x400/4c4f69/white?text=Visual+Exp" alt="Visual Experiment">
+                        </div>
+                    </a>
+                </li>
+
+                <!-- 通常カード (画像なしテキストのみ) -->
+                <li class="page-list-item no-image">
+                    <a href="#">
+                        <div class="header">
+                            <span class="title">アイデアメモ: 2026/05</span>
+                        </div>
+                    </a>
+                </li>
+                
+                <li class="page-list-item">
+                    <a href="#">
+                        <div class="header">
+                            <span class="title">3D Typography</span>
+                        </div>
+                        <div class="icon">
+                            <img src="https://placehold.co/400x400/a6e3a1/333?text=3D+Typo" alt="3D Typography">
+                        </div>
+                    </a>
+                </li>
+
+                 <li class="page-list-item">
+                    <a href="#">
+                        <div class="header">
+                            <span class="title">Logo Design Vol.3</span>
+                        </div>
+                        <div class="icon">
+                            <img src="https://placehold.co/400x400/f9e2af/333?text=Logo" alt="Logo">
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- 新規作成ボタン (UIアクセント) -->
+    <a href="#" class="new-button">+</a>
+
+</body>
+</html>
