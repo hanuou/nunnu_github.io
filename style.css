@@ -145,11 +145,11 @@ img { display: block; }
 .works-grid {
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(2, 1fr);  /* 常に2列 */
+  grid-template-columns: repeat(2, 1fr);  /* 2列固定 */
 }
 
-/* スマホ極小サイズのみ1列 */
-@media screen and (max-width: 400px) {
+/* スマホのみ1列 */
+@media screen and (max-width: 600px) {
   .works-grid { grid-template-columns: 1fr; }
 }
 
