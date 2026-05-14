@@ -1,25 +1,21 @@
 /* ============================================
-   Portfolio CSS — Scrapbox スタイル再現
-   Catppuccin Latte palette
+   Portfolio CSS — nunnu Scrapbox 完全再現
    ============================================ */
 
 /* --------------------------------------------
-   1. カラーテーマ・基本設定
+   1. CSS変数・リセット
    -------------------------------------------- */
 
 :root {
-  --basecolor:      #eff1f5;
-  --accentcolor:    #7287fd;
-  --text:           #4c4f69;
-  --subtext:        #6c6f85;
-  --marker-color:   #ea76cb;
-  --card-title-bg:  #ea76cb;
-  --overlay-bg:     rgba(0, 0, 0, 0.55);
-  --surface0:       #ccd0da;
-  --surface1:       #bcc0cc;
+  --basecolor:     #eff1f5;
+  --accentcolor:   #7287fd;
+  --text:          #4c4f69;
+  --subtext:       #6c6f85;
+  --marker-color:  #ea76cb;
+  --card-title-bg: #ea76cb;
+  --overlay-bg:    rgba(0, 0, 0, 0.6);
 }
 
-/* リセット */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -37,13 +33,12 @@ body {
   color: var(--text);
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-weight: 700;
-  font-size: 18px;
-  line-height: 1.7;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
 }
 
-ul { list-style: none; }
-a  { text-decoration: none; }
+ul  { list-style: none; }
+a   { text-decoration: none; }
 img { display: block; }
 
 
@@ -52,83 +47,55 @@ img { display: block; }
    -------------------------------------------- */
 
 .navbar {
+  background-color: var(--basecolor);
+  border-bottom: none;
+  box-shadow: none;
+  padding: 20px 0;
+  height: auto;
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: var(--basecolor);
-  padding: 20px 0;
 }
 
 .navbar-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   max-width: 85%;
   margin: 0 auto;
   padding: 0 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
 }
 
-/* サイトタイトル — 中央固定 */
+/* 左側メニュー非表示 */
+.navbar-left {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* 中央タイトル */
 .project-home {
-  font-family: "Kalnia", serif;
-  font-weight: 600;
-  font-size: 22px;
   color: var(--text);
-  letter-spacing: 0.08em;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.12em;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
   transition: color 0.2s;
 }
 .project-home:hover { color: var(--accentcolor); }
 
-/* 左側ナビリンク */
-.nav-links {
-  display: flex;
-  gap: 28px;
-}
-.nav-links a {
-  font-size: 13px;
-  color: var(--subtext);
-  letter-spacing: 0.05em;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--accentcolor); }
-
 
 /* --------------------------------------------
-   3. ヒーロー / ページタイトル
+   3. ページリスト（index）
    -------------------------------------------- */
 
-.hero {
-  padding: 60px 0 40px;
-}
-
-.hero-inner {
-  max-width: 85%;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-.page-title {
-  font-family: "Kalnia", serif;
-  font-size: clamp(28px, 5vw, 48px);
-  font-weight: 400;
-  color: var(--text);
-  text-align: center;
-  letter-spacing: 0.06em;
-  padding-bottom: 20px;
-  box-shadow: 0 1px 0 0 var(--text);
-}
-
-
-/* --------------------------------------------
-   4. セクション共通
-   -------------------------------------------- */
-
-.section {
-  padding: 60px 0;
+.page-list {
+  padding-top: 10vh;
 }
 
 .container {
@@ -137,115 +104,9 @@ img { display: block; }
   padding: 0 16px;
 }
 
-.container.narrow {
-  max-width: 680px;
-}
-
-.section-title {
-  font-family: "Kalnia", serif;
-  font-size: clamp(20px, 3vw, 30px);
-  font-weight: 400;
-  color: var(--text);
-  letter-spacing: 0.06em;
-  padding-bottom: 14px;
-  box-shadow: 0 1px 0 0 var(--text);
-  margin-bottom: 32px;
-}
-
-.body-text {
-  font-size: 18px;
-  color: var(--text);
-  line-height: 1.9;
-  margin-bottom: 24px;
-}
-
-/* [[マーカー強調]] の再現 */
-.body-text strong {
-  background: linear-gradient(
-    transparent 10%,
-    var(--marker-color) 25%,
-    var(--marker-color) 70%,
-    transparent 90%
-  );
-  font-weight: 700;
-}
-
-.ext-link {
-  color: var(--accentcolor);
-  font-size: 18px;
-  transition: opacity 0.2s;
-  animation-play-state: paused;
-}
-.ext-link:hover {
-  animation: blink 0.5s linear infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.6; }
-}
-
 
 /* --------------------------------------------
-   5. ハッシュタグ
-   -------------------------------------------- */
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 4px;
-}
-
-.hashtag {
-  display: inline-block;
-  padding: 2px 8px;
-  margin: 0 8px 10px 0;
-  font-size: 0.8em;
-  color: var(--accentcolor);
-  border: 2px solid var(--accentcolor);
-  border-radius: 3px;
-  transition: transform 0.2s, color 0.2s;
-  transform: scale(1);
-}
-.hashtag:hover {
-  transform: scale(1.1);
-}
-
-
-/* --------------------------------------------
-   6. ピンタブ
-   -------------------------------------------- */
-
-.pin-tabs {
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.pin-tabs .pin {
-  height: 32px;
-}
-
-.pin-tabs .pin a {
-  display: inline-block;
-  height: 100%;
-  padding: 6px 16px;
-  font-size: 13px;
-  color: var(--accentcolor);
-  letter-spacing: 0.04em;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.pin-tabs .pin:hover a,
-.pin-tabs .pin.active a {
-  border-bottom-color: var(--accentcolor);
-}
-
-
-/* --------------------------------------------
-   7. ワークスグリッド
+   4. グリッド
    -------------------------------------------- */
 
 .grid {
@@ -257,49 +118,139 @@ img { display: block; }
   align-content: start;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .grid { grid-template-columns: repeat(4, 1fr); }
 }
-@media (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
   .grid { grid-template-columns: repeat(6, 1fr); }
 }
-@media (min-width: 1600px) {
+@media screen and (min-width: 1600px) {
   .grid { grid-template-columns: repeat(8, 1fr); }
 }
 
-/* カード */
-.page-list-item {
-  aspect-ratio: 1 / 1;
-  grid-column: auto / span 2;
-  overflow: hidden;
-  contain: layout paint;
+
+/* --------------------------------------------
+   5. ピン留めカード（タブナビ）
+   -------------------------------------------- */
+
+.page-list-item.pin {
+  height: 32px;
+  width: 100%;
+  margin-bottom: 5px;
 }
 
-.page-list-item a {
-  position: relative;
+/* ピン留めの背景を透明化 */
+.page-list-item.pin > a {
   display: block;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.page-list-item.pin .header.pinned {
+  border: none;
+  background: none;
+  padding: 6px 5px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ピン留めタイトル */
+.page-list-item.pin .title {
+  font-size: 12px;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 700;
+  color: var(--accentcolor);
+  text-align: center;
+  background: none;
+  max-height: 20px;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Informationだけ特別な色 */
+.page-list-item.pin[data-page-title="Information"] > a .title {
+  color: var(--accentcolor);
+}
+
+/* アクティブなフィルタータブ */
+.filter-link.active .title {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.page-list-item.pin > a:hover .title {
+  opacity: 0.7;
+}
+
+/* ピン留め後に続く最初のカードを左端に配置 */
+.page-list-item.pin + .page-list-item:not(.pin) {
+  grid-column-start: 1;
+}
+
+
+/* --------------------------------------------
+   6. 通常カード（ワークサムネイル）
+   -------------------------------------------- */
+
+/* カード外枠 */
+.page-list-item:not(.pin) {
+  grid-column: auto / span 2;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  width: auto;
+  align-self: start;
+  vertical-align: top;
+  margin: 0;
+  contain: layout paint;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 非表示（フィルター用） */
+.page-list-item.hidden {
+  display: none !important;
+}
+
+/* カード内アンカー */
+.page-list-item:not(.pin) > a {
+  display: block;
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
   border-radius: 10px;
   background-color: var(--basecolor);
+  box-shadow: none;
+  border: none;
+  outline: none;
 }
 
-/* --- 画像あり --- */
-.card-img {
+/* 背景画像コンテナ */
+.card-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
-.card-img img {
+
+.card-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.2s ease;
 }
 
-/* タイトルバッジ — 左上 */
-.page-list-item a .header {
+/* タイトルバッジ（左上・通常は非表示） */
+.page-list-item:not(.pin) > a .header {
   position: absolute;
   top: 0;
   left: 0;
@@ -307,7 +258,7 @@ img { display: block; }
   max-width: 100%;
 }
 
-.page-list-item a .header .title {
+.page-list-item:not(.pin) > a .header .title {
   display: inline-block;
   font-size: 13px;
   font-weight: 700;
@@ -315,93 +266,165 @@ img { display: block; }
   line-height: 22px;
   color: var(--text);
   background-color: var(--card-title-bg);
-  padding: 2px 6px;
+  padding: 2px 4px;
+  height: 50px;
+  /* 画像ありは非表示→ホバーで表示 */
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-/* 画像ありカード: ホバーでタイトル表示 */
-.page-list-item a:not(.no-image):hover .title {
+/* ホバー時：タイトル表示・画像を暗く */
+.page-list-item:not(.pin) > a:hover .title {
   opacity: 1;
 }
-.page-list-item a:not(.no-image):hover .card-img img {
-  opacity: 0.55;
+.page-list-item:not(.pin) > a:hover .card-bg img {
+  opacity: 0.5;
 }
 
-/* --- 画像なし --- */
-.page-list-item a.no-image {
-  background-color: var(--basecolor);
-}
-
-.page-list-item a.no-image .header {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.page-list-item a.no-image .header .title {
-  opacity: 1;
-  background-color: var(--card-title-bg);
-  position: static;
-  text-align: center;
-  padding: 10px 14px;
-  font-size: 15px;
-  width: auto;
-  max-width: 90%;
-  line-height: 1.5;
-}
-
-
-/* --------------------------------------------
-   8. セパレーター
-   -------------------------------------------- */
-
-.separator {
-  max-width: 85%;
-  margin: 0 auto;
-  border-top: 1px solid var(--text);
-  height: 1px;
-}
-
-
-/* --------------------------------------------
-   9. About
-   -------------------------------------------- */
-
-.about-section .container.narrow {
-  max-width: 680px;
-}
-
-
-/* --------------------------------------------
-   10. フッター
-   -------------------------------------------- */
-
-.footer {
-  padding: 40px 0 60px;
-  text-align: center;
-  font-size: 13px;
-  color: var(--subtext);
-}
-
-
-/* --------------------------------------------
-   11. モバイル調整
-   -------------------------------------------- */
-
-@media (max-width: 640px) {
-  .nav-links { display: none; }
-
-  .page-list-item a .header .title {
-    font-size: 11px;
+/* タッチデバイスでは常にタイトル表示 */
+@media (hover: none) {
+  .page-list-item:not(.pin) > a .title {
+    opacity: 1;
   }
 }
 
-@media (hover: none) {
-  /* タッチデバイスでは常にタイトル表示 */
-  .page-list-item a:not(.no-image) .title {
-    opacity: 1;
+/* Newリボン */
+.ribbon {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  font-size: 10px;
+  font-weight: 700;
+  background-color: var(--accentcolor);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+
+/* --------------------------------------------
+   7. ページ本文（information.html）
+   -------------------------------------------- */
+
+.info-page .page {
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+}
+
+.page-column {
+  display: grid;
+  grid-template-columns: 70vw;
+  justify-content: center;
+  padding: 60px 16px 100px;
+}
+
+/* 行 */
+.line {
+  font-size: 20px;
+  color: var(--text);
+  width: 100%;
+  line-height: 1.8;
+  padding: 2px 0;
+}
+
+.line .text {
+  color: var(--text);
+}
+
+/* ページタイトル */
+.line.line-title {
+  font-size: 36px;
+  box-shadow: 0 1px 0 0 var(--text);
+  padding-bottom: 20px;
+  margin-bottom: 0;
+  display: block;
+  background-color: transparent;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-indent: 0.06em;
+}
+
+/* マーカー強調 */
+.line strong {
+  background: linear-gradient(
+    transparent 10%,
+    var(--marker-color) 25%,
+    var(--marker-color) 70%,
+    transparent 90%
+  );
+  font-weight: 700;
+}
+
+/* 外部リンク・ページリンク */
+.ext-link {
+  color: var(--accentcolor);
+  font-size: 20px;
+  transition: opacity 0.2s;
+}
+.ext-link:hover {
+  animation: blink 0.5s linear infinite;
+}
+
+.back-link {
+  font-size: 16px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+/* セパレーター（---） */
+.line.separator-line {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  margin: 4px 0 8px;
+}
+.line.separator-line::after {
+  flex-grow: 1;
+  content: "";
+  border-top: 1px solid var(--text);
+}
+
+/* ハッシュタグ */
+.tags-line {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hashtag {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 0 8px 10px 0;
+  font-size: 0.8em;
+  color: var(--accentcolor);
+  border: 2px solid var(--accentcolor);
+  border-radius: 3px;
+  transition: transform 0.3s;
+  transform: scale(1);
+}
+.hashtag:hover {
+  transform: scale(1.1);
+}
+
+
+/* --------------------------------------------
+   8. モバイル調整
+   -------------------------------------------- */
+
+@media (max-width: 640px) {
+  .page-column {
+    grid-template-columns: 90vw;
+    padding: 40px 16px 80px;
+  }
+  .line.line-title {
+    font-size: 26px;
+  }
+  .line {
+    font-size: 17px;
   }
 }
