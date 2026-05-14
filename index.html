@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@100..700&family=Noto+Music&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ============================================
+       NAVBAR
+       ============================================ -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <ul class="nav-links">
+        <li><a href="#works">Works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="project-home" href="/">nunnu</a>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="page-title">Portfolio</h1>
+    </div>
+  </section>
+
+  <!-- ============================================
+       WORKS
+       ============================================ -->
+  <section id="works" class="section">
+    <div class="container">
+      <!-- Pinned tabs -->
+      <ul class="pin-tabs">
+        <li class="pin active"><a href="#">All</a></li>
+        <li class="pin"><a href="#">Design</a></li>
+        <li class="pin"><a href="#">Development</a></li>
+        <li class="pin"><a href="#">Illustration</a></li>
+      </ul>
+
+      <!-- Cards grid -->
+      <ul class="grid" id="works-grid">
+        <!-- MicroCMS から JS で inject する想定。下記はサンプル -->
+
+        <li class="page-list-item">
+          <a href="#">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/w1/800/450" alt="Work 1" />
+            </div>
+            <div class="header">
+              <span class="title">Project Alpha</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="page-list-item">
+          <a href="#">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/w2/800/450" alt="Work 2" />
+            </div>
+            <div class="header">
+              <span class="title">Brand Identity</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="page-list-item">
+          <!-- 画像なし → タイトルカード -->
+          <a href="#" class="no-image">
+            <div class="header">
+              <span class="title">Type Exploration</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="page-list-item">
+          <a href="#">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/w4/800/450" alt="Work 4" />
+            </div>
+            <div class="header">
+              <span class="title">UI / Motion</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="page-list-item">
+          <a href="#">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/w5/800/450" alt="Work 5" />
+            </div>
+            <div class="header">
+              <span class="title">Illustration Series</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="page-list-item">
+          <!-- 画像なし -->
+          <a href="#" class="no-image">
+            <div class="header">
+              <span class="title">Sound Design</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="page-list-item">
+          <a href="#">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/w7/800/450" alt="Work 7" />
+            </div>
+            <div class="header">
+              <span class="title">Web Development</span>
+            </div>
+          </a>
+        </li>
+
+        <li class="page-list-item">
+          <a href="#">
+            <div class="card-img">
+              <img src="https://picsum.photos/seed/w8/800/450" alt="Work 8" />
+            </div>
+            <div class="header">
+              <span class="title">Photography</span>
+            </div>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SEPARATOR
+       ============================================ -->
+  <div class="separator"></div>
+
+  <!-- ============================================
+       ABOUT
+       ============================================ -->
+  <section id="about" class="section about-section">
+    <div class="container narrow">
+      <h2 class="section-title">About</h2>
+      <p class="body-text">
+        デザインと開発の境界線を探りながら、<strong>表現の実験</strong>を続けています。
+        <br />
+        グラフィック・UI・音・コードを横断する制作活動。
+      </p>
+      <div class="tags">
+        <a href="#" class="hashtag">Design</a>
+        <a href="#" class="hashtag">Frontend</a>
+        <a href="#" class="hashtag">Illustration</a>
+        <a href="#" class="hashtag">Sound</a>
+        <a href="#" class="hashtag">Photography</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SEPARATOR
+       ============================================ -->
+  <div class="separator"></div>
+
+  <!-- ============================================
+       CONTACT
+       ============================================ -->
+  <section id="contact" class="section">
+    <div class="container narrow">
+      <h2 class="section-title">Contact</h2>
+      <p class="body-text">お仕事のご依頼・ご相談はこちらから。</p>
+      <a href="mailto:hello@example.com" class="ext-link">hello@example.com</a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer">
+    <p>© 2025 nunnu</p>
+  </footer>
+
+</body>
+</html>
